@@ -74,6 +74,31 @@ public class ProcessoFaseMovimentacaoDTO implements Serializable {
         this.movimentacao = movimentacao;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.processo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProcessoFaseMovimentacaoDTO other = (ProcessoFaseMovimentacaoDTO) obj;
+        if (!Objects.equals(this.processo, other.processo)) {
+            return false;
+        }
+        return true;
+    }
+
    
 
 }
