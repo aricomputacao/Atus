@@ -4,8 +4,6 @@
  */
 package br.com.atus.util.managedbean;
 
-import br.com.atus.interfaces.Controller;
-import br.com.atus.util.MenssagemUtil;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;

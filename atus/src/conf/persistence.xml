@@ -1,69 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
-  <persistence-unit name="atusWebPU" transaction-type="JTA">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <!--<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>-->
-    <jta-data-source>jdbc/atus</jta-data-source>
-    <class>br.com.atus.cadastro.modelo.Advogado</class>
-    <class>br.com.atus.cadastro.modelo.Agenda</class>
-    <class>br.com.atus.cadastro.modelo.Atendimento</class>
-    <class>br.com.atus.cadastro.modelo.Cidade</class>
-    <class>br.com.atus.cadastro.modelo.Cliente</class>
-    <class>br.com.atus.cadastro.modelo.Colaborador</class>
-    <class>br.com.atus.cadastro.modelo.Email</class>
-    <class>br.com.atus.cadastro.modelo.EspecieEvento</class>
-    <class>br.com.atus.cadastro.modelo.JuizoTribunal</class>
-    <class>br.com.atus.cadastro.modelo.Materia</class>
-    <class>br.com.atus.cadastro.modelo.Nacionalidade</class>
-    <class>br.com.atus.cadastro.modelo.Orgao</class>
-    <class>br.com.atus.cadastro.modelo.OrgaoEmissor</class>
-    <class>br.com.atus.cadastro.modelo.Peca</class>
-    <class>br.com.atus.cadastro.modelo.Profissao</class>
-    <class>br.com.atus.cadastro.modelo.RamoJudiciario</class>
-    <class>br.com.atus.cadastro.modelo.TipoContrato</class>
-    <class>br.com.atus.cadastro.modelo.TipoTratamento</class>
-    <class>br.com.atus.cadastro.modelo.UnidadeFederativa</class>
-    <class>br.com.atus.cadastro.modelo.Usuario</class>
-    <class>br.com.atus.dto.ProcessoAtrasadoDTO</class>
-    <class>br.com.atus.dto.ProcessoEmDiaDTO</class>
-    <class>br.com.atus.dto.ProcessoFaseMovimentacaoDTO</class>
-    <class>br.com.atus.dto.ProcessoGrupoDiaAtrasadoDTO</class>
-    <class>br.com.atus.dto.ProcessosAtrasadoRelatorioDTO</class>
-    <class>br.com.atus.financeiro.modelo.CaixaColaborador</class>
-    <class>br.com.atus.financeiro.modelo.ContaReceber</class>
-    <class>br.com.atus.financeiro.modelo.Cooptacao</class>
-    <class>br.com.atus.financeiro.modelo.ParcelasReceber</class>
-    <class>br.com.atus.financeiro.modelo.Recibo</class>
-    <class>br.com.atus.processo.modelo.Adversario</class>
-    <class>br.com.atus.processo.modelo.Contrato</class>
-    <class>br.com.atus.processo.modelo.Enderecamento</class>
-    <class>br.com.atus.processo.modelo.Evento</class>
-    <class>br.com.atus.processo.modelo.Fase</class>
-    <class>br.com.atus.processo.modelo.GrupoPeca</class>
-    <class>br.com.atus.processo.modelo.Movimentacao</class>
-    <class>br.com.atus.processo.modelo.Notificacao</class>
-    <class>br.com.atus.processo.modelo.NotificacaoProcesso</class>
-    <class>br.com.atus.processo.modelo.ObjetoProcesso</class>
-    <class>br.com.atus.processo.modelo.ParteInteressada</class>
-    <class>br.com.atus.processo.modelo.Processo</class>
-    <class>br.com.atus.processo.modelo.SubGrupoPeca</class>
-    <class>br.com.atus.seguranca.modelo.Modulo</class>
-    <class>br.com.atus.seguranca.modelo.Permissao</class>
-    <class>br.com.atus.seguranca.modelo.Tarefa</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties>
-      <!--<property name="hibernate.show_sql" value="true"/>-->
-      <!--<property name="hibernate.format_sql" value="true"/>-->
-      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-      <!-- EHCACHE -->
-      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.ehcache.EhCacheProvider"/>
-      <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
-      <property name="hibernate.cache.use_second_level_cache" value="true"/>
-      <!-- Query Cache -->
-      <property name="hibernate.cache.use_query_cache" value="false"/>
-      <!-- Query Cache -->
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
-    </properties>
-  </persistence-unit>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+    <persistence-unit name="atusWebPU" transaction-type="JTA">
+    <!--<persistence-unit name="atus_pu" transaction-type="JTA">-->
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>jdbc/atus</jta-data-source>
+
+        <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+        <!--<jta-data-source>java:/jboss/datasources/atus</jta-data-source>-->
+        <class>br.com.atus.cadastro.modelo.Advogado</class>
+        <class>br.com.atus.cadastro.modelo.Agenda</class>
+        <class>br.com.atus.cadastro.modelo.Atendimento</class>
+        <class>br.com.atus.cadastro.modelo.Cidade</class>
+        <class>br.com.atus.cadastro.modelo.Cliente</class>
+        <class>br.com.atus.cadastro.modelo.Colaborador</class>
+        <class>br.com.atus.cadastro.modelo.Email</class>
+        <class>br.com.atus.cadastro.modelo.EspecieEvento</class>
+        <class>br.com.atus.cadastro.modelo.JuizoTribunal</class>
+        <class>br.com.atus.cadastro.modelo.Materia</class>
+        <class>br.com.atus.cadastro.modelo.Nacionalidade</class>
+        <class>br.com.atus.cadastro.modelo.Orgao</class>
+        <class>br.com.atus.cadastro.modelo.OrgaoEmissor</class>
+        <class>br.com.atus.cadastro.modelo.Peca</class>
+        <class>br.com.atus.cadastro.modelo.Profissao</class>
+        <class>br.com.atus.cadastro.modelo.RamoJudiciario</class>
+        <class>br.com.atus.cadastro.modelo.TipoContrato</class>
+        <class>br.com.atus.cadastro.modelo.TipoTratamento</class>
+        <class>br.com.atus.cadastro.modelo.UnidadeFederativa</class>
+        <class>br.com.atus.cadastro.modelo.Usuario</class>
+        <class>br.com.atus.dto.ProcessoAtrasadoDTO</class>
+        <class>br.com.atus.dto.ProcessoEmDiaDTO</class>
+        <class>br.com.atus.dto.ProcessoFaseMovimentacaoDTO</class>
+        <class>br.com.atus.dto.ProcessoGrupoDiaAtrasadoDTO</class>
+        <class>br.com.atus.dto.ProcessosAtrasadoRelatorioDTO</class>
+        <class>br.com.atus.financeiro.modelo.CaixaColaborador</class>
+        <class>br.com.atus.financeiro.modelo.ContaReceber</class>
+        <class>br.com.atus.financeiro.modelo.Cooptacao</class>
+        <class>br.com.atus.financeiro.modelo.ParcelasReceber</class>
+        <class>br.com.atus.financeiro.modelo.Recibo</class>
+        <class>br.com.atus.processo.modelo.Adversario</class>
+        <class>br.com.atus.processo.modelo.Contrato</class>
+        <class>br.com.atus.processo.modelo.Enderecamento</class>
+        <class>br.com.atus.processo.modelo.Evento</class>
+        <class>br.com.atus.processo.modelo.Fase</class>
+        <class>br.com.atus.processo.modelo.GrupoPeca</class>
+        <class>br.com.atus.processo.modelo.Movimentacao</class>
+        <class>br.com.atus.processo.modelo.Notificacao</class>
+        <class>br.com.atus.processo.modelo.NotificacaoProcesso</class>
+        <class>br.com.atus.processo.modelo.ObjetoProcesso</class>
+        <class>br.com.atus.processo.modelo.ParteInteressada</class>
+        <class>br.com.atus.processo.modelo.Processo</class>
+        <class>br.com.atus.processo.modelo.SubGrupoPeca</class>
+        <class>br.com.atus.seguranca.modelo.Modulo</class>
+        <class>br.com.atus.seguranca.modelo.Permissao</class>
+        <class>br.com.atus.seguranca.modelo.Tarefa</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <!--<property name="hibernate.show_sql" value="true"/>-->
+            <!--<property name="hibernate.format_sql" value="true"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <!-- EHCACHE -->
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.ehcache.EhCacheProvider"/>
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <!-- Query Cache -->
+            <property name="hibernate.cache.use_query_cache" value="false"/>
+            <!-- Query Cache -->
+            
+            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+        </properties>
+    </persistence-unit>
 </persistence>

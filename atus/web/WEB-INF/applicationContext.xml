@@ -31,6 +31,8 @@
 
 
    <b:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+       
+       <!--<b:property name="jndiName" value="java:/jboss/datasources/atus"/>-->
         <b:property name="jndiName" value="jdbc/atus"/>
     </b:bean>
 
