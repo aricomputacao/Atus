@@ -30,11 +30,11 @@ public class EmprestimoColaboradorController extends Controller<EmprestimoColabo
         setDAO(dao);
     }
 
-    public List<EmprestimoColaborador> consultarEmprestimos(String ordem, String campo, String valor) throws Exception {
-        if (valor == null || valor.equals("")) {
-            return dao.consultarTodos(ordem, campo, valor);
+    public List<EmprestimoColaborador> consultarEmprestimos(String valor) throws Exception {
+        if (valor == null || !valor.equals("")) {
+            return dao.consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", valor);
         }
-        return dao.consultarTodos(ordem);
+        return dao.consultarTodos("dataEmprestimo");
     }
     
 }

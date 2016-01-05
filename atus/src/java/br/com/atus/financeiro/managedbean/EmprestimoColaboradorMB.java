@@ -5,6 +5,8 @@
  */
 package br.com.atus.financeiro.managedbean;
 
+import br.com.atus.cadastro.modelo.Colaborador;
+import br.com.atus.cadastro.modelo.Pessoa;
 import br.com.atus.financeiro.controller.EmprestimoColaboradorController;
 import br.com.atus.financeiro.modelo.EmprestimoColaborador;
 import br.com.atus.util.MenssagemUtil;
@@ -48,6 +50,8 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
             emprestimoColaborador = (EmprestimoColaborador) navegacaoMB.getRegistroMapa("emprestimo_colaborador", new EmprestimoColaborador());
 
             if (emprestimoColaborador == null) {
+                emprestimoColaborador.setColaborador(new Colaborador());
+                emprestimoColaborador.getColaborador().setPessoa(new Pessoa());
                 emprestimoColaborador.setValor(BigDecimal.ZERO);
                 listaEmprestimoColaborador = emprestimoColaboradorController.consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", emprestimoColaborador.getColaborador().getPessoa().getNome());
             } else {
@@ -98,7 +102,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void consultar() {
         try {
-            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimos("dataEmprestimo", "colaborador.pessoa.nome", getValorBusca());
+            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimos(emprestimoColaborador.getColaborador().getPessoa().getNome());
         } catch (Exception ex) {
             Logger.getLogger(EmprestimoColaboradorMB.class.getName()).log(Level.SEVERE, null, ex);
         }
