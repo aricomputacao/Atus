@@ -98,7 +98,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void consultar() {
         try {
-            listaEmprestimoColaborador = emprestimoColaboradorController.consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", getValorBusca());
+            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimos("dataEmprestimo", "colaborador.pessoa.nome", getValorBusca());
         } catch (Exception ex) {
             Logger.getLogger(EmprestimoColaboradorMB.class.getName()).log(Level.SEVERE, null, ex);
         }

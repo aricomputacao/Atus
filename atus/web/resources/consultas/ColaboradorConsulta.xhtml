@@ -68,7 +68,7 @@
                             <composite:insertChildren id="filhoBtn" />
                             <comp:commandButton_editar id="btnEdita" rendered="#{cc.attrs.renderEditar}" acao_butao="#{navegacaoMB.redirecionar(navegacao['cad.colaborador'],'colaborador',t)}" />
                             <comp:commandButton_excluir id="btnExcl" acao_butao="#{colaboradorMB.excluir(t)}" rendered="#{cc.attrs.renderExcluir}" classe="Colaborador" form_to_update="@form"/>
-                            <comp:button_acao_selecionar id="btnsel" rendered="#{cc.attrs.renderSelecionar}" alvo="#{cc.attrs.valorSelecionado}"  componente_to_update="#{cc.attrs.update_form}" nome_dialog="#{cc.attrs.nomeDialog}" valor="#{t.pessoa.nome}" />
+                            <comp:button_acao_selecionar id="btnsel" rendered="#{cc.attrs.renderSelecionar}" alvo="#{cc.attrs.valorSelecionado}"  componente_to_update="#{cc.attrs.update_form}" nome_dialog="#{cc.attrs.nomeDialog}" valor="#{t}" />
 
                         </ui:insert>
                     </p:column>
