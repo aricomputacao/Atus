@@ -14,33 +14,35 @@
         </f:facet>
         <link rel="shortcut icon" href="resources/imagens/ico.ico" />
         <link rel="icon" type="image/png" href="/resources/imagens/ico.png" />
-        <h:outputStylesheet library="css" name="default.css"/>
         <title>#{label['nome.sistema']}</title>
     </h:head>
-    <h:body  >
-       
-        <div align="center"  style="margin-top: 5px">
+    <h:body class="back-login " >
+
+
+        <div align="center" style="margin-top: 90px;"  >
             <form action="j_spring_security_check" method="post"  >
-                <h:panelGrid id="grid" columns="1" style="background:url(resources/imagens/login.png) center no-repeat; height: 700px;width: 800px;border-radius: 1500px" >
-                    <h:panelGroup >
-                        <h:panelGrid style="margin-top: 100px;margin-left:   200px" columns="3">
-                            <h:panelGrid cellspacing="5" >
-                                <p:outputLabel value="Usuário" style="font-size: 15px;font-weight: bold" for="j_username"/>
-                                <p:outputLabel value="Senha  " style="font-size: 15px;font-weight: bold" for="j_password"/>
-                            </h:panelGrid>
-                            <h:panelGrid>   
-                                <p:inputText id="j_username"  requiredMessage="Preencha o documento!"  required="true" style="width: 200px;"/>
-                                <p:password id="j_password"   required="true" style="width: 200px;"/>
-                            </h:panelGrid>
-                            <h:panelGrid>   
-                                <p:graphicImage library="imagens" name="lock.png" width="42" height="64" title="Usuário ou senha incorrento!" rendered="#{param.erro}"/>
-                            </h:panelGrid>
-                        </h:panelGrid>
-                        <h:commandButton id="btnLogin"  image="/resources/imagens/entrar.gif" style="margin-left: 397px;border-radius: 5px"  />
-                    </h:panelGroup>
-                </h:panelGrid>
+                <div align="center" id="grid"  class=" painelLogin  "   >
+                    <p:graphicImage library="imagens" style="margin-left: 34%" name="logo-cab.png"  />
+                    <p:outputLabel value="Gestão de Escritórios de Advocacia" style="color: #808080;font-family: Times New Roman, Times, serif;font-weight: bold;font-size: 18px;font-style: italic"/>
+                    <p:separator style="width: 98%"/>
+                    <div class="circulo" />        
+                    <h:panelGrid>
+                        <p:outputLabel value="Identificação do Usuário"  style="color: #484848  ;font-family: Times New Roman, Times, serif;font-weight: bold;font-size: 23px;font-style: italic;width: 100%"/>
+                    </h:panelGrid>
+                    <h:panelGrid rendered="#{param.erro}" class="msg-login" width="100%" >
+                        <h:outputText  style="margin-left: 55px;color: red; font-size: 15px; ;"  value="Usuário ou senha incorrento!" />
+                    </h:panelGrid>
+
+                    <h:panelGrid cellspacing="5" width="50%" columns="2" style="margin-top: 10px;" >
+                        <p:inputText id="j_username" style="height: 43px" placeholder="Usuário"  requiredMessage="Preencha !"  required="true" />
+                        <p:password id="j_password" placeholder="Senha"  style="height: 43px" required="true" />
+                    </h:panelGrid>
+                    <h:commandButton id="btnLogin"   value="Entrar" class="btn-login"  />
+                </div>
 
             </form>
         </div>
+        <h:outputStylesheet library="css" name="login.css"/>
+        <h:outputStylesheet library="css" name="default.css"/>
     </h:body>
 </ui:composition>
