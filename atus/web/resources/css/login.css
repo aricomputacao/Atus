@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.transparencia {
+    filter:alpha(opacity=70) ! important;
+    opacity: 0.7 ! important;
+    -moz-opacity:0.7 ! important;
+    -webkit-opacity:0.7 ! important;
+}
+
+.msg-login{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f6f6f6+47,ededed+100;White+3D+%231 */
+
+    margin-top: 10px;
+
+
+    width: 300px ! important;
+    border-radius: 5px ! important;
+    height: 20px ! important;
+    background:  seashell;
+
+}
+
+.btn-login:hover{
+    filter:alpha(opacity=60) ! important;
+    opacity: 0.6 ! important;
+    -moz-opacity:0.6 ! important;
+    -webkit-opacity:0.6 ! important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&amp;1+0,0+100;White+to+Transparent */
+
+}
+
+.btn-login{
+    border-radius: 9px;
+    margin-top: 20px;
+    width: 77%;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+    font-weight: bolder;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4096ee+0,4096ee+100;Blue+Flat+%232 */
+    background: rgb(64,150,238); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(64,150,238,1) 0%, rgba(64,150,238,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(64,150,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(64,150,238,1) 0%,rgba(64,150,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+
+
+}
+.painelLogin{
+    /*background:url("#{resource['imagens/login.png']}") center no-repeat;*/ 
+    height: 420px;
+    width: 400px;
+    border-radius: 10px;
+    border: none;
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+
+
+
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.back-login{
+
+
+    background: url("#{resource['imagens/imgB0.jpg']}") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:11;
+    width:100%;
+    height:100%;
+    filter: alpha(opacity=65);
+}
+
+
+.circulo {
+    margin-top: 20px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&amp;1+0,0+100;White+to+Transparent */
+    background: url("#{resource['imagens/user.png']}") no-repeat center center, -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: url("#{resource['imagens/user.png']}") no-repeat center center, -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: url("#{resource['imagens/user.png']}") no-repeat center center, linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+
+    border-radius: 60px;
+    border: none;
+    padding: 60px; 
+    width: 7px;
+    height: 1px; 
+
+
+}
+
+.lg{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&amp;1+0,0+100;White+to+Transparent */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */    
+    background:  -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background:  linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    -webkit-box-shadow: 10px 10px 11px 0px rgba(0,0,0,0.66);
+    -moz-box-shadow: 10px 10px 11px 0px rgba(0,0,0,0.66);
+    box-shadow: 10px 10px 11px 0px rgba(0,0,0,0.66);
+
+
+    border: none;
+}

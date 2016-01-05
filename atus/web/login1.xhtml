@@ -1,0 +1,46 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:util="http://java.sun.com/jsf/composite/util"
+                >
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        </f:facet>
+        <link rel="shortcut icon" href="resources/imagens/ico.ico" />
+        <link rel="icon" type="image/png" href="/resources/imagens/ico.png" />
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>#{label['nome.sistema']}</title>
+    </h:head>
+    <h:body  >
+       
+        <div align="center"  style="margin-top: 5px">
+            <form action="j_spring_security_check" method="post"  >
+                <h:panelGrid id="grid" columns="1" style="background:url(resources/imagens/login.png) center no-repeat; height: 700px;width: 800px;border-radius: 1500px" >
+                    <h:panelGroup >
+                        <h:panelGrid style="margin-top: 100px;margin-left:   200px" columns="3">
+                            <h:panelGrid cellspacing="5" >
+                                <p:outputLabel value="Usuário" style="font-size: 15px;font-weight: bold" for="j_username"/>
+                                <p:outputLabel value="Senha  " style="font-size: 15px;font-weight: bold" for="j_password"/>
+                            </h:panelGrid>
+                            <h:panelGrid>   
+                                <p:inputText id="j_username"  requiredMessage="Preencha o documento!"  required="true" style="width: 200px;"/>
+                                <p:password id="j_password"   required="true" style="width: 200px;"/>
+                            </h:panelGrid>
+                            <h:panelGrid>   
+                                <p:graphicImage library="imagens" name="lock.png" width="42" height="64" title="Usuário ou senha incorrento!" rendered="#{param.erro}"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:commandButton id="btnLogin"  image="/resources/imagens/entrar.gif" style="margin-left: 397px;border-radius: 5px"  />
+                    </h:panelGroup>
+                </h:panelGrid>
+
+            </form>
+        </div>
+    </h:body>
+</ui:composition>

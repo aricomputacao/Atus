@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                template="/modelo/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:comp="http://java.sun.com/jsf/composite/comp"
+                xmlns:cons="http://java.sun.com/jsf/composite/consultas"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:acao="http://java.sun.com/jsf/composite/acao">
+
+    <ui:define name="corpo">
+        <h:outputScript name="sonumero.js"  library="js"/>
+
+        <h:form id="frm_pag" prependId="false" >
+            <p:blockUI block="@form" trigger=":frm_pag:cadFrm:comPag:btnPag" >
+                <p:graphicImage library="imagens" name="carregar.gif"/>
+            </p:blockUI>
+            <comp:panel_cadastro id="cadFrm"  cabecalho_grid="Pagamento Colaborador" id_form="frm_pag"  >               
+                <h:panelGrid >
+                    <acao:PagarColaborador nome="Pagar Colaborador" id="comPag" nomeDialog="dialogoConColaborador" update_form="@form" />
+                </h:panelGrid>
+            </comp:panel_cadastro>
+        </h:form>
+
+    </ui:define>
+    <ui:define name="dialogs">
+        <p:dialog showEffect="fade" position="top"   header="Consulta de Pessoas" id="conPesCli" modal="true" hideEffect="fade" widgetVar="dialogoConColaborador">
+            <h:form id="frmConCliente" prependId="false">
+                <cons:ColaboradorConsulta renderEditar="false" id="tblCli" renderExcluir="false" renderSelecionar="true"   nomeDialog="dialogoConColaborador" update_form=":frm_pag:cadFrm:comPag:inputCon:input_componente"
+                                          valorSelecionado="#{caixaColaboradorMB.colaborador}" >
+                    <f:facet name="btnConCola">
+                        <comp:commandButton_consulta acao_butao="#{colaboradorMB.listar()}" componente_to_update=":frmConCliente"/>
+                    </f:facet>
+                </cons:ColaboradorConsulta>
+            </h:form>
+        </p:dialog>
+        <p:dialog showEffect="fade" position="top"  header="Consulta de Parcelas" id="conParce" modal="true" hideEffect="fade" widgetVar="dialogParcelas">
+            <h:form id="frmParc" prependId="false">
+                
+            <p:dataTable value="#{caixaColaboradorMB.recibo.listaDeParcelasReceber}" id="tabelaPar" paginatorAlwaysVisible="false" paginator="true" var="p" rows="10"
+                         rowStyleClass="#{(empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row')}" rowIndexVar="rowIx" emptyMessage="#{mensagens['consulta.vazia']}">
+           
+                 <p:column headerText="Valor Parcela" >
+                    <comp:outputText value="#{p.valorParcela}" tipo="c" />
+                </p:column>
+                 <p:column headerText="Valor Col." >
+                    <comp:outputText value="#{p.valorDoColaborador}" tipo="c" />
+                </p:column>
+                <p:column headerText="Percentual Col." >
+                    <comp:outputText value="#{p.contaReceber.cooptacao.percentColaborador}" tipo="p" />
+                </p:column>
+                <p:column headerText="Número Parcela" >
+                    <h:outputText value="#{p.numeroDaParcela} de #{p.contaReceber.quantidadeParcelas}" />
+                </p:column>
+               
+            </p:dataTable>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+

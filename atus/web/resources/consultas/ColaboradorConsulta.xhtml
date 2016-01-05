@@ -12,6 +12,7 @@
     <composite:interface id="interCon">
         <composite:attribute id="nome" name="nome" default="Consulta" shortDescription="Cabeçalho do panelGrid" />
         <composite:facet   name="btnConCola" />
+        <composite:attribute name="listaColaborador" default="#{colaboradorMB.listaColaboradors}"/>
         <composite:attribute name="renderExcluir" default="true"/>
         <composite:attribute name="renderEditar" default="true"/>
         <composite:attribute name="renderSelecionar" default="false"/>
@@ -64,9 +65,10 @@
 
                     <p:column headerText="Ação" width="9%" style="text-align: center">
                         <ui:insert name="acaoOrgao" >
+                            <composite:insertChildren id="filhoBtn" />
                             <comp:commandButton_editar id="btnEdita" rendered="#{cc.attrs.renderEditar}" acao_butao="#{navegacaoMB.redirecionar(navegacao['cad.colaborador'],'colaborador',t)}" />
                             <comp:commandButton_excluir id="btnExcl" acao_butao="#{colaboradorMB.excluir(t)}" rendered="#{cc.attrs.renderExcluir}" classe="Colaborador" form_to_update="@form"/>
-                            <comp:button_acao_selecionar id="btnsel" rendered="#{cc.attrs.renderSelecionar}" alvo="#{cc.attrs.valorSelecionado}"  componente_to_update="#{cc.attrs.update_form}" nome_dialog="#{cc.attrs.nomeDialog}" valor="#{t}" />
+                            <comp:button_acao_selecionar id="btnsel" rendered="#{cc.attrs.renderSelecionar}" alvo="#{cc.attrs.valorSelecionado}"  componente_to_update="#{cc.attrs.update_form}" nome_dialog="#{cc.attrs.nomeDialog}" valor="#{t.pessoa.nome}" />
 
                         </ui:insert>
                     </p:column>

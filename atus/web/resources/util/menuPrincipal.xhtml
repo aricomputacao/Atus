@@ -58,6 +58,7 @@
                     <p:menuitem styleClass="item" id="menRec" value="Confirmar Recibo" rendered="#{navegacaoMB.permissaoExiste(navegacao['fin.recibo'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['fin.recibo'])}" immediate="true"/>
                     <p:menuitem styleClass="item" id="menPre" value="Prestação de Conta" rendered="#{navegacaoMB.permissaoExiste(navegacao['fin.prestacao.conta'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['fin.prestacao.conta'])}" immediate="true"/>
                     <p:menuitem styleClass="item" id="menPagCol" value="Pagamento Colaborador" rendered="#{navegacaoMB.permissaoExiste(navegacao['fin.caixa.colaborador'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['fin.caixa.colaborador'])}" immediate="true"/>
+                    <p:menuitem styleClass="item" id="menEmpCol" value="Emprestimo Colaborador" rendered="#{navegacaoMB.permissaoExiste(navegacao['fin.emprestimo.colaborador'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['fin.emprestimo.colaborador'])}" immediate="true"/>
                 </p:submenu>
 
 

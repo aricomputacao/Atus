@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:composite="http://java.sun.com/jsf/composite"
+                xmlns:comp="http://java.sun.com/jsf/composite/comp"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <composite:interface id="interCon">
+        <composite:attribute id="nome" name="nome" default="Consulta" shortDescription="Cabeçalho do panelGrid" />
+        <composite:facet name="btnConsultaProcesso"/>
+        <composite:attribute name="renderPesquisar" default="true"/>
+        <composite:attribute name="valorSelecionado" />
+        <composite:attribute name="nomeDialog" />
+        <composite:attribute name="update_form" default="@form" shortDescription="Form a ser atualizado apos selecionar item" />
+        <composite:attribute name="dialogUpdade" default=":frmDialogCadProce:compCadPro:tbView"/>
+    </composite:interface>
+    <composite:implementation id="compConCli" >
+        <h:panelGrid  width="100%" id="rtt" >
+            <p:fieldset id="fieldCon" rendered="#{navegacaoMB.permissaoConsultar(navegacao['fin.emprestimo.colaborador'])}" legend="#{cc.attrs.nome}" style="font-weight: bold">
+                <h:panelGrid id="grdConsulta" columns="4" rendered="#{cc.attrs.renderPesquisar}">                   
+
+                    <h:panelGrid  id="grdConsulta2">                        
+                        <h:panelGrid>
+                            <comp:input_button nome_dialog="dialogoConColaborador" required="false" id="inputCon" input_size="50" nome_label="Colaborador" value_input="#{emprestimoColaboradorMB.valorBusca}"  />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <h:panelGrid id="grdConsulta3">
+                        <p:spacer width="15" id="spacer"/>
+                        <composite:renderFacet name="btnConsultaProcesso" id="btnConsultaProcesso"/>
+                    </h:panelGrid>
+
+                </h:panelGrid>
+                <p:dataTable value="#{emprestimoColaboradorMB.listaEmprestimoColaborador}" id="tabela" paginatorAlwaysVisible="false"  paginator="true" var="t" rows="10"
+                             rowStyleClass="#{(empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row')}"
+                             rowIndexVar="rowIx" emptyMessage="#{mensagens['consulta.vazia']}">
+                    <p:column headerText="Colaborador" width="10%">
+                        <comp:outputText value="#{t.colaborador.pessoa.nome}"/>
+                    </p:column>
+                    <p:column headerText="Data" >
+                        <comp:outputText value="#{t.dataEmprestimo}" tipo="d"/>
+                    </p:column>
+                    <p:column headerText="Data Pag." >
+                        <comp:outputText value="#{t.dataPagamento}" tipo="d"/>
+                    </p:column>
+                    <p:column headerText="Valor"  >
+                        <comp:outputText value="#{t.valor}" tipo="c"/>
+                    </p:column>
+                    <p:column headerText="Ação" width="9%" style="text-align: center">
+                        <p:commandButton  title="Finalizar Pagamento" immediate="true"  actionListener="#{emprestimoColaboradorMB.finalizarEmprestimo(t)}" update="@form" icon="fa fa-check fa-lg"  >
+                            <p:confirm header="Confirmação" message="Finalizar pagamento?"   icon="ui-icon-alert"/>
+                        </p:commandButton>
+                        <comp:commandButton_excluir acao_butao="#{emprestimoColaboradorMB.excluir(t)}" form_to_update="@form" classe="Emprestimo" />
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+
+        </h:panelGrid>
+    </composite:implementation>
+</ui:composition>
+
+
+
+

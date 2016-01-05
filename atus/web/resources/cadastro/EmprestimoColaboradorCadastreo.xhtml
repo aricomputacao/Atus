@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:composite="http://java.sun.com/jsf/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:comp="http://java.sun.com/jsf/composite/comp"
+                xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <composite:interface id="int">
+        <composite:attribute id="nome" name="nome" default="Consulta" shortDescription="Cabeçalho do panelGrid" />
+    </composite:interface>
+    <composite:implementation id="int2" >
+        
+        
+        <p:fieldset id="fieldCad" legend="Cadastro"  rendered="#{navegacaoMB.permissaoIncluir(navegacao['fin.emprestimo.colaborador'])}" style="text-align: left;width: 100%">
+            <h:panelGrid columns="2"  >
+                <h:panelGrid  >
+                    <comp:input_button   nome_dialog="dialogoConColaborador" required="false" id="inputCon" input_size="50" nome_label="Colaborador" value_input="#{emprestimoColaboradorMB.emprestimoColaborador.colaborador.pessoa.nome}"  />
+
+                </h:panelGrid>
+
+                <h:panelGrid>
+                    <h:panelGrid columns="2" >
+                        <p:outputLabel value="Valor" for="par"/>
+                        <p:message for="par"/>
+                    </h:panelGrid>
+                    <p:inputText value="#{emprestimoColaboradorMB.emprestimoColaborador.valor}"  id="par"  size="15" onkeypress="soNumero()"  converter="#{converterBigDecimal}"  styleClass="edtMoeda" onfocus="mascaraInputs();" 
+                                 required="true" requiredMessage="#{mensagens['require']}">
+                    </p:inputText>
+                </h:panelGrid>
+            </h:panelGrid>
+            <h:panelGrid  >
+                <h:panelGrid columns="2" >
+                    <p:outputLabel value="Observação" for="obs"/>
+                    <p:message for="obs"/>
+                </h:panelGrid>
+                <p:inputTextarea value="#{emprestimoColaboradorMB.emprestimoColaborador.observacao}"  id="obs" cols="50" />
+            </h:panelGrid>
+
+
+        </p:fieldset>
+    </composite:implementation>
+</ui:composition>
+
+
+
+
