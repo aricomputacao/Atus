@@ -66,7 +66,7 @@ public class Colaborador implements Serializable {
     private String observacao;
     
     public String getNome(){
-        return this.pessoa.getNome();
+        return this.pessoa != null ? this.pessoa.getNome() : "";
     }
 
     public String getObservacao() {
