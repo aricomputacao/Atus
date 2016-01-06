@@ -26,7 +26,7 @@
             
             
             <h:panelGrid width="100%" rendered="#{not navegacaoMB.renderPainelCadastro}"  >
-                <cons:EmprestimoColaboradorConsulta dialogUpdade="dialogoConColaborador" valorSelecionado="#{emprestimoColaboradorMB.emprestimoColaborador.colaborador}" update_form="@form"  >
+                <cons:EmprestimoColaboradorConsulta dialogUpdade="dialogoConColaborador" valorSelecionado="#{emprestimoColaboradorMB.colaborador}" update_form="@form"  >
                     <f:facet name="btnConsultaProcesso">
                         <comp:commandButton_consulta acao_butao="#{emprestimoColaboradorMB.consultar()}" componente_to_update=":frm_pag"/>
                     </f:facet>
@@ -39,7 +39,7 @@
         <p:dialog showEffect="fade" position="top"   header="Consulta de Pessoas" id="conPesCli" modal="true" hideEffect="fade" widgetVar="dialogoConColaborador">
             <h:form id="frmConCliente" prependId="false">
                 <cons:ColaboradorConsulta renderEditar="false"  id="tblCli" renderExcluir="false" renderSelecionar="true"    nomeDialog="dialogoConColaborador" update_form="@(form)"
-                                          valorSelecionado="#{emprestimoColaboradorMB.emprestimoColaborador.colaborador}"   >
+                                          valorSelecionado="#{emprestimoColaboradorMB.colaborador}"   >
 
                     <f:facet name="btnConCola">
                         <comp:commandButton_consulta acao_butao="#{colaboradorMB.listar()}" componente_to_update=":frmConCliente"/>

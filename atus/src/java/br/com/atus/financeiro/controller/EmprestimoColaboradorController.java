@@ -19,11 +19,11 @@ import javax.inject.Inject;
  * @author ari
  */
 @Stateless
-public class EmprestimoColaboradorController extends Controller<EmprestimoColaborador, Long> implements Serializable{
+public class EmprestimoColaboradorController extends Controller<EmprestimoColaborador, Long> implements Serializable {
 
     @Inject
     private EmprestimoColaboradorDAO dao;
-    
+
     @PostConstruct
     @Override
     protected void inicializaDAO() {
@@ -31,10 +31,7 @@ public class EmprestimoColaboradorController extends Controller<EmprestimoColabo
     }
 
     public List<EmprestimoColaborador> consultarEmprestimos(String valor) throws Exception {
-        if (valor == null || !valor.equals("")) {
-            return dao.consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", valor);
-        }
-        return dao.consultarTodos("dataEmprestimo");
+        return dao.consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", valor);
     }
-    
+
 }

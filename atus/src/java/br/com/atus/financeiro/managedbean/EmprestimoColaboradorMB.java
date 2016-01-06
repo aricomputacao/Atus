@@ -14,6 +14,7 @@ import br.com.atus.util.managedbean.BeanGenerico;
 import br.com.atus.util.managedbean.NavegacaoMB;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +37,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
     private NavegacaoMB navegacaoMB;
     @EJB
     private EmprestimoColaboradorController emprestimoColaboradorController;
-
+    private Colaborador colaborador;
     private EmprestimoColaborador emprestimoColaborador;
     private List<EmprestimoColaborador> listaEmprestimoColaborador;
 
@@ -48,18 +49,17 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
     public void init() {
         try {
             emprestimoColaborador = (EmprestimoColaborador) navegacaoMB.getRegistroMapa("emprestimo_colaborador", new EmprestimoColaborador());
-
-            if (emprestimoColaborador == null) {
-                emprestimoColaborador.setColaborador(new Colaborador());
-                emprestimoColaborador.getColaborador().setPessoa(new Pessoa());
+            if (emprestimoColaborador.getId() == null) {
+                colaborador = new Colaborador();
                 emprestimoColaborador.setValor(BigDecimal.ZERO);
-                listaEmprestimoColaborador = emprestimoColaboradorController.consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", emprestimoColaborador.getColaborador().getPessoa().getNome());
-            } else {
                 emprestimoColaborador = new EmprestimoColaborador();
                 emprestimoColaborador.setAtivo(true);
                 emprestimoColaborador.setDataEmprestimo(new Date());
 
+            } else {
+                colaborador = emprestimoColaborador.getColaborador();
             }
+            listaEmprestimoColaborador = new ArrayList<>();
         } catch (Exception ex) {
             Logger.getLogger(EmprestimoColaboradorMB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,6 +67,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void salvar() {
         try {
+            emprestimoColaborador.setColaborador(colaborador);
             emprestimoColaboradorController.salvarouAtualizar(emprestimoColaborador);
             init();
             MenssagemUtil.addMessageInfo(NavegacaoMB.getMsg("salvar", MenssagemUtil.MENSAGENS));
@@ -102,7 +103,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void consultar() {
         try {
-            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimos(emprestimoColaborador.getColaborador().getPessoa().getNome());
+            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimos(colaborador.getNome());
         } catch (Exception ex) {
             Logger.getLogger(EmprestimoColaboradorMB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,6 +120,14 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void setEmprestimoColaborador(EmprestimoColaborador emprestimoColaborador) {
         this.emprestimoColaborador = emprestimoColaborador;
+    }
+
+    public Colaborador getColaborador() {
+        return colaborador;
+    }
+
+    public void setColaborador(Colaborador colaborador) {
+        this.colaborador = colaborador;
     }
 
 }
