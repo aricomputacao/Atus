@@ -24,8 +24,7 @@ import javax.persistence.Query;
  */
 public abstract class DAO<T, PK extends Serializable> implements Serializable {
 
-    @PersistenceContext(unitName = "atusWebPU")
-//    @PersistenceContext(unitName = "atus_pu")
+    @PersistenceContext(unitName = "atus_pu")
     private EntityManager em;
     private final Class<T> entityClass;
 
