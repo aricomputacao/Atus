@@ -62,8 +62,11 @@
                     <p:column headerText="Assunto" >
                         <comp:outputText value="#{t.assunto}"/>
                     </p:column>
-                    <p:column headerText="Abertura" width="8%">
+                    <p:column headerText="Abertura" >
                         <comp:outputText tipo="dt" value="#{t.dataAbertura}"/>
+                    </p:column>
+                    <p:column headerText="Para" >
+                        <comp:outputText  value="#{t.usuarioAtendimento.nome}"/>
                     </p:column>
 
                     <p:column headerText="Ação" width="12%" style="text-align: center">

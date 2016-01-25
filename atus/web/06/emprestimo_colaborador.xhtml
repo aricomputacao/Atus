@@ -8,7 +8,8 @@
                 xmlns:comp="http://java.sun.com/jsf/composite/comp"
                 xmlns:cons="http://java.sun.com/jsf/composite/consultas"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:acao="http://java.sun.com/jsf/composite/cadastro">
+                xmlns:acao="http://java.sun.com/jsf/composite/cadastro"
+                xmlns:util="http://java.sun.com/jsf/composite/util">
 
     <ui:define name="corpo">
         <h:outputScript name="maskMoney.js" library="js" />
@@ -17,14 +18,14 @@
         <h:form id="frm_pag" prependId="false" >
             <comp:menuPanel id="menuPanel" acao_adicionar="#{navegacaoMB.redirecionarCadastro(navegacao['fin.emprestimo.colaborador'])}" 
                             disable_imprimir="true" acao_consultar="#{navegacaoMB.redirecionarConsulta(navegacao['fin.emprestimo.colaborador'])}" acao_imprimir="#{navegacaoMB.index()}" acao_limpar="#{emprestimoColaboradorMB.init()}" acao_salvar="#{emprestimoColaboradorMB.salvar()}"/>
-           
+
             <h:panelGrid width="100%" rendered="#{navegacaoMB.renderPainelCadastro}"  >
                 <comp:panel_cadastro id="cadFrm"  cabecalho_grid="Emprestimo Colaborador" id_form="frm_pag"  >               
                     <acao:EmprestimoColaboradorCadastreo nome="Pagar Colaborador" id="comPag"  />
                 </comp:panel_cadastro>
             </h:panelGrid>
-            
-            
+
+
             <h:panelGrid width="100%" rendered="#{not navegacaoMB.renderPainelCadastro}"  >
                 <cons:EmprestimoColaboradorConsulta dialogUpdade="dialogoConColaborador" valorSelecionado="#{emprestimoColaboradorMB.colaborador}" update_form="@form"  >
                     <f:facet name="btnConsultaProcesso">
@@ -47,8 +48,28 @@
                 </cons:ColaboradorConsulta>
             </h:form>
         </p:dialog>
-     
-        
+        <p:dialog showEffect="fade" position="top"   header="Consulta de Pessoas" id="dialogPag" modal="true" hideEffect="fade" widgetVar="dialogPag">
+            <h:form id="frmPagamento" prependId="false">
+                <util:menuCadDialogFechandoAposSalvar acao_salvar="#{emprestimoColaboradorMB.finalizarEmprestimo()}" frm_update="@(form)" dialog="dialogPag"/>
+                <p:fieldset>
+                    <h:panelGrid   >
+
+                        <h:panelGrid>
+                            <h:panelGrid columns="2" >
+                                <p:outputLabel value="Valor" for="par"/>
+                                <p:message for="par"/>
+                            </h:panelGrid>
+                            <p:inputText value="#{emprestimoColaboradorMB.valor}"  id="par"  size="15" onkeypress="soNumero()"  converter="#{converterBigDecimal}"  styleClass="edtMoeda" onfocus="mascaraInputs();" 
+                                         required="true" requiredMessage="#{mensagens['require']}">
+                            </p:inputText>
+                        </h:panelGrid>
+                        
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>
+        </p:dialog>
+
+
     </ui:define>
 </ui:composition>
 

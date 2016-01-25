@@ -40,6 +40,8 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
     private Colaborador colaborador;
     private EmprestimoColaborador emprestimoColaborador;
     private List<EmprestimoColaborador> listaEmprestimoColaborador;
+    private Date dataDePagamento;
+    private BigDecimal valor;
 
     public EmprestimoColaboradorMB() {
         super(EmprestimoColaborador.class);
@@ -48,6 +50,8 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
     @PostConstruct
     public void init() {
         try {
+            dataDePagamento = new Date();
+            valor = BigDecimal.ZERO;
             emprestimoColaborador = (EmprestimoColaborador) navegacaoMB.getRegistroMapa("emprestimo_colaborador", new EmprestimoColaborador());
             if (emprestimoColaborador.getId() == null) {
                 colaborador = new Colaborador();
@@ -89,10 +93,14 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
         }
     }
 
-    public void finalizarEmprestimo(EmprestimoColaborador ec) {
+    public void setarEmprestimoColaborador(EmprestimoColaborador ec){
+        emprestimoColaborador = ec;
+        consultar();
+    }
+    
+    public void finalizarEmprestimo() {
         try {
-            ec.setDataPagamento(new Date());
-            emprestimoColaboradorController.atualizar(ec);
+            emprestimoColaboradorController.efetuarPagamento(emprestimoColaborador,valor,dataDePagamento);
             MenssagemUtil.addMessageInfo(NavegacaoMB.getMsg("salvar", MenssagemUtil.MENSAGENS));
 
         } catch (Exception ex) {
@@ -130,4 +138,22 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
         this.colaborador = colaborador;
     }
 
+    public Date getDataDePagamento() {
+        return dataDePagamento;
+    }
+
+    public void setDataDePagamento(Date dataDePagamento) {
+        this.dataDePagamento = dataDePagamento;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    
+    
 }

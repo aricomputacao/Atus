@@ -49,11 +49,12 @@
                     <p:column headerText="Valor" width="10%"  >
                         <comp:outputText value="#{t.valor}" tipo="c"/>
                     </p:column>
-                    <p:column headerText="Ação" width="5%" style="text-align: center">
-                        <p:commandButton  title="Finalizar Pagamento" immediate="true"  actionListener="#{emprestimoColaboradorMB.finalizarEmprestimo(t)}" update="@form" icon="fa fa-check fa-lg"  >
-                            <p:confirm header="Confirmação" message="Finalizar pagamento?"   icon="ui-icon-alert"/>
-                        </p:commandButton>
-                        <comp:commandButton_excluir acao_butao="#{emprestimoColaboradorMB.excluir(t)}" form_to_update="@form" classe="Emprestimo" />
+                    <p:column headerText="Ação" width="5%" style="text-align: center" >
+                        
+                        <p:commandButton  title="Finalizar Pagamento" immediate="true" rendered="#{t.dataPagamento == null}" actionListener="#{emprestimoColaboradorMB.setarEmprestimoColaborador(t)}"
+                                          oncomplete="PF('dialogPag').show()" icon="fa fa-check fa-lg" />
+                       
+                        <comp:commandButton_excluir acao_butao="#{emprestimoColaboradorMB.excluir(t)}" rendered="#{t.dataPagamento == null}" form_to_update="@form" classe="Emprestimo" />
                     </p:column>
                 </p:dataTable>
             </p:fieldset>

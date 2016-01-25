@@ -21,7 +21,7 @@
     <composite:implementation>
       
         <p:menubar id="menCadDia"  style="margin-top: 20px" >
-            <p:menuitem id="menSal2"  onclick="PF('#{cc.attrs.dialog}').hide()"  styleClass="menuPanel"  icon="ui-icon-disk" title="#{cc.attrs.title}"  actionListener="#{cc.attrs.acao_salvar}" update="#{cc.attrs.frm_update}" />
+            <p:menuitem id="menSal2" oncomplete="PF('#{cc.attrs.dialog}').hide()"  styleClass="menuPanel"  icon="ui-icon-disk" title="#{cc.attrs.title}"  actionListener="#{cc.attrs.acao_salvar}" update="#{cc.attrs.frm_update}" />
         </p:menubar>
 
     </composite:implementation>
