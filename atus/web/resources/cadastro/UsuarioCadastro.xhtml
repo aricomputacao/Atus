@@ -16,6 +16,10 @@
         <p:fieldset id="fieldCad" rendered="#{navegacaoMB.permissaoIncluir(navegacao['cad.usuario'])}" legend="Cadastro" style="text-align: left">
 
             <h:panelGrid columns="1"  >
+                <p:commandButton actionListener="#{usuarioMB.resetarSenha()}" icon="fa fa-refresh"  value="Resetar Senha" >
+                    <p:confirm header="Resetar senha" message="A senha ser alterada para 123456!"   icon="ui-icon-alert"/>
+
+                </p:commandButton>
                 <h:panelGrid columns="2"> 
                     <h:panelGrid>
                         <h:panelGrid columns="2" >

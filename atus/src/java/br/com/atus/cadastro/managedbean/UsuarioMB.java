@@ -112,6 +112,18 @@ public class UsuarioMB extends BeanGenerico<Usuario> implements Serializable {
         }
     }
 
+    public void resetarSenha() {
+        try {
+            usuario.setSenha(cs.criptografarSenha("123456"));
+            controller.atualizar(usuario);
+            MenssagemUtil.addMessageInfo("Senha alterada com sucesso!");
+
+        } catch (Exception ex) {
+            MenssagemUtil.addMessageErro(NavegacaoMB.getMsg("falha", MenssagemUtil.MENSAGENS), ex, "Usuario");
+            Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void alterarSenha() {
         try {
             Usuario u = navegacaoMB.getUsuarioLogado();
