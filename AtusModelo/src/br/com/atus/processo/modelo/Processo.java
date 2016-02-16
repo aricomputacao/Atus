@@ -113,8 +113,7 @@ public class Processo implements Serializable {
     @PecaColetor
     @Column(name = "pro_objeto", length = 1024)
     private String objetoProcesso;
-    
-    
+
     @Column(name = "pro_motivo_fase", length = 1024)
     private String motivoFase;
 
@@ -444,17 +443,18 @@ public class Processo implements Serializable {
         this.motivoFase = motivoFase;
     }
 
-    
-    public String getNomeDoCliente(){
+    public String getNomeDoCliente() {
         return this.cliente.getNome();
     }
-    
-    
-    public String getNomeDoColaborador(){
-        return this.colaborador.getNome();
+
+    public String getNomeDoColaborador() {
+        if (this.colaborador != null) {
+            return this.colaborador.getNome();
+        } else {
+            return "";
+        }
     }
-   
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
