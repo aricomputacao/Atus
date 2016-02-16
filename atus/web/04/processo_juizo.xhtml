@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                template="/modelo/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:comp="http://java.sun.com/jsf/composite/comp"
+                xmlns:cons="http://java.sun.com/jsf/composite/consultas"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="corpo">
+        <h:outputScript name="sonumero.js"  library="js"/>
+
+        <h:form id="frm_pag" prependId="false" >
+
+            <comp:menuPanel   id="menuPanel"   acao_adicionar="#{navegacaoMB.redirecionarCadastro(navegacao['pro.processo'])}" 
+                              acao_consultar="#{navegacaoMB.redirecionarConsulta(navegacao['rel.processo_juizo'])}" acao_imprimir="#{relatorioMB.imprimirProcessoJuizo()}" acao_limpar="#{relatorioMB.init()}" acao_salvar="#{relatorioMB.init()}"/>
+
+            <comp:panel_cadastro id="cadFrm" cabecalho_grid="Processos Atrasados" id_form="frm_pag"  >               
+                <p:fieldset>
+                    <h:panelGrid columns="2">
+                        <p:selectCheckboxMenu label="Juizo Tribunal" required="true" value="#{relatorioMB.listaDeJuizoTribunaisSelection}" filter="true" 
+                                              filterMatchMode="startsWith" panelStyle="width:350px" converter="#{indexConverter}">
+                            <f:selectItems value="#{relatorioMB.listaDeJuizoTribunais}" var="f" itemLabel="#{f.nome}" itemValue="#{f}" />
+                        </p:selectCheckboxMenu>
+                        <p:commandButton icon="fa fa-search fa-lg" id="btn" onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" value="Pesquisar" title="Pesquisar" update="@form" actionListener="#{relatorioMB.consultarProcessoPorJuizo()}" />
+
+
+                    </h:panelGrid>
+                </p:fieldset>
+                <h:panelGrid >
+                    <p:fieldset>
+
+                        <p:dataTable value="#{relatorioMB.listaDeProcessos}"  id="tabela" paginatorAlwaysVisible="false"  paginator="true" var="t" rows="10"
+                                     rowStyleClass="(empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row')}"
+                                     rowIndexVar="rowIx" emptyMessage="#{mensagens['consulta.vazia']}">
+                            <p:column headerText="Id" width="3%" sortBy="#{t.id}" style="font-size: 8px">
+                                <comp:outputText value="#{t.id}"/>
+                            </p:column>
+                            <p:column headerText="Número" width="10%" sortBy="#{t.numero}" >
+                                <comp:outputText value="#{t.numero}"/>
+                            </p:column>
+                            <p:column headerText="Juizo" width="10%" >
+                                <comp:outputText value="#{t.juizoTribunal.nome}" />
+                            </p:column>
+                            <p:column headerText="Objeto" width="10%" >
+                                <comp:outputText value="#{t.objetoProcesso}"/>
+                            </p:column>
+                            <p:column headerText="Cliente" sortBy="#{t.cliente.pessoa.nome}" width="10%">
+                                <comp:outputText value="#{t.cliente.pessoa.nome}"/>
+                            </p:column>
+                            <p:column headerText="Fase" width="8%"   >
+                                <comp:outputText value="#{t.fase.nome}" title="#{t.motivoFase}"/>
+                            </p:column>
+                            <p:column headerText="Ender" sortBy="#{t.enderecamento.nome}" width="3%" >
+                                <comp:outputText value="#{t.enderecamento.nome}"/>
+                            </p:column>
+                            <p:column headerText="Colaborador" sortBy="#{t.colaborador.pessoa.nome}" width="5%" >
+                                <comp:outputText value="#{t.colaborador.pessoa.nome}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:fieldset>
+                </h:panelGrid>
+            </comp:panel_cadastro>
+        </h:form>
+
+    </ui:define>
+    <ui:define name="dialogs">
+
+
+
+    </ui:define>
+
+</ui:composition>
+

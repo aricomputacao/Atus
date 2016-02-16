@@ -71,7 +71,11 @@
                 <p:menuitem icon="fa fa-ellipsis-v fa-lg" styleClass="itemSep"/>
 
                 <p:submenu label="Relatório" icon="fa fa-list fa-lg" rendered="#{navegacaoMB.permissaoModuloRelatorio()}" styleClass="subMenu">
-                    <p:menuitem value="Processos Atrasados" styleClass="item" rendered="#{navegacaoMB.permissaoExiste(navegacao['rel.processo_atrasado'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['rel.processo_atrasado'])}" immediate="true"/>
+                    <p:submenu  label="Processo" id="sbPro"  >
+                        <p:menuitem value="Atrasados" styleClass="item" rendered="#{navegacaoMB.permissaoExiste(navegacao['rel.processo_atrasado'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['rel.processo_atrasado'])}" immediate="true"/>
+                        <p:menuitem value="Juizo" styleClass="item" rendered="#{navegacaoMB.permissaoExiste(navegacao['rel.processo_juizo'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['rel.processo_juizo'])}" immediate="true"/>
+                        <p:menuitem value="Endereçamento" styleClass="item" rendered="#{navegacaoMB.permissaoExiste(navegacao['rel.processo_enderecamento'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['rel.processo_enderecamento'])}" immediate="true"/>
+                    </p:submenu>
                     <p:submenu  label="Colaboraor" id="sbCol"  >
                         <p:menuitem value="Processos" styleClass="item" rendered="#{navegacaoMB.permissaoExiste(navegacao['rel.processo_colaborador'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['rel.processo_colaborador'])}" immediate="true"/>
                         <p:menuitem value="Agenda" styleClass="item" rendered="#{navegacaoMB.permissaoExiste(navegacao['rel.agenda_colaborador'])}" update="@form"  actionListener="#{navegacaoMB.redirecionarConsulta(navegacao['rel.agenda_colaborador'])}" immediate="true"/>

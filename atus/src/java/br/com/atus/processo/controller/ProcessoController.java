@@ -18,10 +18,12 @@ import br.com.atus.dto.ProcessosAtrasadoRelatorioDTO;
 import br.com.atus.enumerated.Perfil;
 import br.com.atus.cadastro.modelo.Cliente;
 import br.com.atus.cadastro.modelo.Colaborador;
+import br.com.atus.cadastro.modelo.JuizoTribunal;
 import br.com.atus.processo.modelo.Fase;
 import br.com.atus.processo.modelo.Movimentacao;
 import br.com.atus.processo.modelo.Processo;
 import br.com.atus.cadastro.modelo.Usuario;
+import br.com.atus.processo.modelo.Enderecamento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -143,8 +145,6 @@ public class ProcessoController extends Controller<Processo, Long> implements Se
         return dao.consultarPor(c);
     }
 
-    
-
     public List<Processo> consultaLikePor(String numero) {
         return dao.consultaLikePor(numero);
     }
@@ -200,8 +200,7 @@ public class ProcessoController extends Controller<Processo, Long> implements Se
             return deProcessos.consultaProcessosPor(numero, usuarioLogado);
         }
     }
-    
-    
+
     public List<Processo> consultaPorLike(String nomeDoCliente, Usuario usuarioLogado) throws Exception {
         ConsultaDeProcessos deProcessos;
         if (usuarioLogado.getPerfil().equals(Perfil.COLABORADOR)) {
@@ -225,6 +224,15 @@ public class ProcessoController extends Controller<Processo, Long> implements Se
     }
 
     public List<Processo> consultaPorColaborador(Colaborador colaborador, List<Fase> listaFasesSelection) {
-       return dao.consultaPorColaborador(colaborador,listaFasesSelection);
+        return dao.consultaPorColaborador(colaborador, listaFasesSelection);
+    }
+
+    public List<Processo> consultarProcessoPor(List<JuizoTribunal> listaDeJuizoTribunaisSelection) {
+        return dao.consultarProcessoPor(listaDeJuizoTribunaisSelection);
+    }
+
+    public List<Processo> consultarProcessoPorEnderecamentos(List<Enderecamento> listaDeEnderecamentos) {
+        return dao.consultarProcessoPorEnderecamentos(listaDeEnderecamentos);
+
     }
 }

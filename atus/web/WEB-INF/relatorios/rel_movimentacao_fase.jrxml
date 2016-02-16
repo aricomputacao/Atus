@@ -47,34 +47,34 @@
 		<groupHeader>
 			<band height="20">
 				<rectangle>
-					<reportElement x="0" y="0" width="802" height="20" backcolor="#CCCCCC" uuid="5fa8753d-9fe9-438d-97cd-f219cfe7d403"/>
+					<reportElement uuid="5fa8753d-9fe9-438d-97cd-f219cfe7d403" x="0" y="0" width="802" height="20" backcolor="#CCCCCC"/>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</rectangle>
 				<textField>
-					<reportElement x="106" y="0" width="268" height="20" uuid="82540ff9-bb5b-4fa7-81cc-5123ff003114"/>
+					<reportElement uuid="82540ff9-bb5b-4fa7-81cc-5123ff003114" x="106" y="0" width="268" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{faseAntiga}.getNome()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="2" y="0" width="79" height="20" uuid="96cd1d96-c519-4f1b-b3ae-02c7c08b3aff"/>
+					<reportElement uuid="96cd1d96-c519-4f1b-b3ae-02c7c08b3aff" x="2" y="0" width="79" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Fase Antiga:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="381" y="0" width="103" height="20" uuid="8252ba87-77d9-4cdd-b86e-2c2a5e4e693e"/>
+					<reportElement uuid="8252ba87-77d9-4cdd-b86e-2c2a5e4e693e" x="381" y="0" width="129" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Usuário da Fase:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="484" y="0" width="260" height="20" uuid="0a738702-7e1a-422b-a4a8-d685c7b32a24"/>
+					<reportElement uuid="0a738702-7e1a-422b-a4a8-d685c7b32a24" x="510" y="0" width="260" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
@@ -88,30 +88,30 @@
 		<groupHeader>
 			<band height="22">
 				<rectangle>
-					<reportElement x="0" y="1" width="802" height="20" uuid="9af0eade-a89d-4546-9b30-a99787c7609f"/>
+					<reportElement uuid="9af0eade-a89d-4546-9b30-a99787c7609f" x="0" y="1" width="802" height="20"/>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</rectangle>
 				<textField>
-					<reportElement x="106" y="2" width="269" height="20" uuid="a60daa75-f6e5-442e-b888-f1d9d63de509"/>
+					<reportElement uuid="a60daa75-f6e5-442e-b888-f1d9d63de509" x="106" y="2" width="269" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[$F{usuario}.getLogin()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="2" y="1" width="103" height="20" uuid="a6008c3b-8384-4629-82f2-7e00c38e1aa9"/>
+					<reportElement uuid="a6008c3b-8384-4629-82f2-7e00c38e1aa9" x="2" y="1" width="103" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[ Movimentação de:]]></text>
 				</staticText>
 				<textField evaluationTime="Group" evaluationGroup="usuario">
-					<reportElement x="484" y="1" width="100" height="20" uuid="4cd0e470-ad75-4a11-a012-de059e110585"/>
+					<reportElement uuid="4cd0e470-ad75-4a11-a012-de059e110585" x="510" y="1" width="100" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[$V{processo_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="381" y="1" width="103" height="20" uuid="274d455b-588c-44b4-b5d9-f1580ed62ff7"/>
+					<reportElement uuid="274d455b-588c-44b4-b5d9-f1580ed62ff7" x="381" y="1" width="129" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
@@ -123,7 +123,7 @@
 	<title>
 		<band height="65" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="802" height="65" uuid="07708b4c-9f48-41ff-b2d2-55cd6331efd3"/>
+				<reportElement uuid="07708b4c-9f48-41ff-b2d2-55cd6331efd3" x="0" y="0" width="802" height="65"/>
 				<subreportParameter name="relatorio">
 					<subreportParameterExpression><![CDATA[$P{relatorio}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -143,34 +143,34 @@
 	<pageHeader>
 		<band height="20">
 			<rectangle>
-				<reportElement x="0" y="0" width="803" height="20" uuid="e514ea86-42e1-463c-b9bd-585263353b51"/>
+				<reportElement uuid="e514ea86-42e1-463c-b9bd-585263353b51" x="0" y="0" width="803" height="20"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="2" y="0" width="100" height="20" uuid="a86b639a-6372-4d64-8747-43eca06e94a7"/>
+				<reportElement uuid="a86b639a-6372-4d64-8747-43eca06e94a7" x="2" y="0" width="100" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Processo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="106" y="0" width="268" height="20" uuid="07430190-d058-44df-ad8c-cca542dabb64"/>
+				<reportElement uuid="07430190-d058-44df-ad8c-cca542dabb64" x="106" y="0" width="268" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fase Nova]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="0" width="317" height="20" uuid="bada5394-79e2-4e25-80be-067e4ff8a331"/>
+				<reportElement uuid="bada5394-79e2-4e25-80be-067e4ff8a331" x="381" y="0" width="317" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Motivo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="698" y="0" width="100" height="20" uuid="febf5a1d-ffdf-42dc-b091-6a2a7726828c"/>
+				<reportElement uuid="febf5a1d-ffdf-42dc-b091-6a2a7726828c" x="698" y="0" width="100" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -181,28 +181,29 @@
 	<detail>
 		<band height="22" splitType="Stretch">
 			<rectangle>
-				<reportElement style="zebra" x="0" y="1" width="802" height="20" uuid="fd5edaaa-9b99-49ff-9889-2d11ce4761db"/>
+				<reportElement uuid="fd5edaaa-9b99-49ff-9889-2d11ce4761db" style="zebra" x="0" y="1" width="802" height="20"/>
 				<graphicElement>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement x="2" y="2" width="100" height="20" uuid="d21ad4af-e1d5-4dcc-8ca3-7f92bb2a12e0"/>
+				<reportElement uuid="d21ad4af-e1d5-4dcc-8ca3-7f92bb2a12e0" x="2" y="2" width="100" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{processo}.getId()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="106" y="2" width="268" height="20" uuid="96e90d21-9720-49d1-9ee4-219b5d3faec9"/>
+				<reportElement uuid="96e90d21-9720-49d1-9ee4-219b5d3faec9" x="106" y="2" width="268" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{faseNova}.getNome()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="381" y="2" width="317" height="20" uuid="2a53272b-6d3c-4fe9-a90f-9e99ecac207c"/>
+				<reportElement uuid="2a53272b-6d3c-4fe9-a90f-9e99ecac207c" x="381" y="2" width="317" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="698" y="2" width="100" height="20" uuid="978f78b2-e001-4cd9-b1cd-33ffd18a60eb"/>
+				<reportElement uuid="978f78b2-e001-4cd9-b1cd-33ffd18a60eb" x="698" y="2" width="100" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{dataMovimentacao}]]></textFieldExpression>
 			</textField>
 		</band>

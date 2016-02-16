@@ -11,9 +11,11 @@ import br.com.atus.dto.ProcessoGrupoDiaAtrasadoDTO;
 import br.com.atus.dto.ProcessosAtrasadoRelatorioDTO;
 import br.com.atus.cadastro.modelo.Cliente;
 import br.com.atus.cadastro.modelo.Colaborador;
+import br.com.atus.cadastro.modelo.JuizoTribunal;
 import br.com.atus.processo.modelo.Fase;
 import br.com.atus.processo.modelo.Processo;
 import br.com.atus.cadastro.modelo.Usuario;
+import br.com.atus.processo.modelo.Enderecamento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,11 +88,11 @@ public class ProcessoDAO extends DAO<Processo, Long> implements Serializable {
             return q.getResultList();
         }
     }
-    
+
     public List<Processo> consultarProcessoSemMovimentacao() {
         TypedQuery q;
         q = getEm().createQuery("SELECT p FROM Processo p WHERE p.id  NOT IN (SELECT m.processo.id FROM Movimentacao m)", Processo.class);
-              
+
         if (q.getResultList().isEmpty()) {
             return new ArrayList<>();
         } else {
@@ -251,4 +253,21 @@ public class ProcessoDAO extends DAO<Processo, Long> implements Serializable {
         }
     }
 
+    public List<Processo> consultarProcessoPor(List<JuizoTribunal> listaDeJuizoTribunaisSelection) {
+        TypedQuery<Processo> q;
+        q = getEm().createQuery("SELECT p FROM Processo p WHERE p.juizoTribunal IN  (:juiz)  ORDER BY p.juizoTribunal,p.advogado", Processo.class)
+                .setParameter("juiz", listaDeJuizoTribunaisSelection);
+
+        return (List<Processo>) (q.getResultList().isEmpty() ? new ArrayList<>() : q.getResultList());
+    }
+
+    public List<Processo> consultarProcessoPorEnderecamentos(List<Enderecamento> listaDeEnderecamentos) {
+       TypedQuery<Processo> q;
+        q = getEm().createQuery("SELECT p FROM Processo p WHERE p.enderecamento IN  (:end)  ORDER BY p.enderecamento,p.advogado", Processo.class)
+                .setParameter("end", listaDeEnderecamentos);
+
+        return (List<Processo>) (q.getResultList().isEmpty() ? new ArrayList<>() : q.getResultList());
+    }
 }
+
+

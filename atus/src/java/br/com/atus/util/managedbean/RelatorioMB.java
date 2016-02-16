@@ -5,6 +5,7 @@
  */
 package br.com.atus.util.managedbean;
 
+import br.com.atus.cadastro.controller.JuizoTribunalController;
 import br.com.atus.processo.controller.EventoController;
 import br.com.atus.processo.controller.MovimentacaoController;
 import br.com.atus.processo.controller.ProcessoController;
@@ -13,11 +14,14 @@ import br.com.atus.dto.ProcessoUltimaMovimentacaoDTO;
 import br.com.atus.dto.ProcessosAtrasadoRelatorioDTO;
 import br.com.atus.cadastro.modelo.Cliente;
 import br.com.atus.cadastro.modelo.Colaborador;
+import br.com.atus.cadastro.modelo.JuizoTribunal;
 import br.com.atus.processo.modelo.Evento;
 import br.com.atus.processo.modelo.Fase;
 import br.com.atus.processo.modelo.Movimentacao;
 import br.com.atus.processo.modelo.Processo;
 import br.com.atus.cadastro.modelo.Usuario;
+import br.com.atus.processo.controller.EnderecamentoController;
+import br.com.atus.processo.modelo.Enderecamento;
 import br.com.atus.util.AssistentedeRelatorio;
 import br.com.atus.util.RelatorioSession;
 import java.io.Serializable;
@@ -53,7 +57,11 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
     private MovimentacaoController movimentacaoController;
     @Inject
     private UsuarioController usuarioController;
-    
+    @Inject
+    private JuizoTribunalController juizoTribunalController;
+    @Inject
+    private EnderecamentoController enderecamentoController;
+
     private List<ProcessosAtrasadoRelatorioDTO> listaProcessosAtrasadoRelatorioDTOs;
     private List<ProcessoUltimaMovimentacaoDTO> listaProcessoUltimaMovimentacaoDTOs;
     private List<Evento> listaEventos;
@@ -61,8 +69,12 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
     private List<Fase> listaFasesSelection;
     private List<Usuario> listaDeUsuariosSelection;
     private List<Usuario> listaDeUsuarios;
-  
-    
+    private List<JuizoTribunal> listaDeJuizoTribunais;
+    private List<JuizoTribunal> listaDeJuizoTribunaisSelection;
+    private List<Enderecamento> listaDeEnderecamentos;
+    private List<Enderecamento> listaDeEnderecamentosSelection;
+    private List<Processo> listaDeProcessos;
+
     private Cliente cliente;
     private Usuario usuario;
     private Colaborador colaborador;
@@ -81,8 +93,12 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
             listaDeUsuariosSelection = new ArrayList<>();
             listaEventos = new ArrayList<>();
             listaMovimentacaos = new ArrayList<>();
+            listaDeJuizoTribunais = juizoTribunalController.consultarTodos("nome");
+            listaDeJuizoTribunaisSelection = new ArrayList<>();
+            listaDeEnderecamentos = enderecamentoController.consultarTodos("nome");
+            listaDeEnderecamentosSelection = new ArrayList<>();
             listaDeUsuarios = usuarioController.consultarTodos("login");
-                  
+            listaDeProcessos = new ArrayList<>();
             usuario = new Usuario();
             colaborador = new Colaborador();
             dataInicial = new Date();
@@ -92,11 +108,19 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
         }
     }
 
+    public void consultarProcessoPorJuizo() {
+        listaDeProcessos = processoController.consultarProcessoPor(listaDeJuizoTribunaisSelection);
+    }
+
+    public void consultarProcessoPorEnderecamento() {
+        listaDeProcessos = processoController.consultarProcessoPorEnderecamentos(listaDeEnderecamentosSelection);
+    }
+
     public void consultaMovimentacaoFase() {
         listaMovimentacaos = movimentacaoController.consultarMovimentacaoPor(listaFasesSelection, dataInicial, dataFinal);
     }
-    
-    public void consultarMovimentacaoPorUsuarios(){
+
+    public void consultarMovimentacaoPorUsuarios() {
         listaMovimentacaos = movimentacaoController.consultarMovimentacaoPorUsarios(listaDeUsuariosSelection, dataInicial, dataFinal);
     }
 
@@ -116,16 +140,33 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
 
     }
 
-    
     public void listarProcessoColaborador() {
         try {
-            List<Processo> listaProcessos = processoController.consultaPorColaborador(colaborador,listaFasesSelection);
+            List<Processo> listaProcessos = processoController.consultaPorColaborador(colaborador, listaFasesSelection);
             listaProcessoUltimaMovimentacaoDTOs.clear();
             listaProcessoUltimaMovimentacaoDTOs = processoController.ultimasMovimentacoesDe(listaProcessos);
             Collections.sort(listaProcessoUltimaMovimentacaoDTOs);
         } catch (Exception ex) {
             Logger.getLogger(RelatorioMB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void imprimirProcessoJuizo() {
+        if (!listaDeProcessos.isEmpty()) {
+            Map<String, Object> m = new HashMap<>();
+            byte[] rel = new AssistentedeRelatorio().relatorioemByte(listaDeProcessos, m, "WEB-INF/relatorios/rel_processo_juizo.jasper", "Relatório de Processos por Juizo");
+            RelatorioSession.setBytesRelatorioInSession(rel);
+        }
+
+    }
+
+    public void imprimirProcessoEnderecamento() {
+        if (!listaDeProcessos.isEmpty()) {
+            Map<String, Object> m = new HashMap<>();
+            byte[] rel = new AssistentedeRelatorio().relatorioemByte(listaDeProcessos, m, "WEB-INF/relatorios/rel_processo_enderecamento.jasper", "Relatório de Processos por Endereçamento");
+            RelatorioSession.setBytesRelatorioInSession(rel);
+        }
+
     }
 
     public void imprimirProcessoColaborador() {
@@ -136,6 +177,7 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
         }
 
     }
+
     public void imprimirProcessoColaboradorResumido() {
         if (!listaProcessoUltimaMovimentacaoDTOs.isEmpty()) {
             Map<String, Object> m = new HashMap<>();
@@ -171,6 +213,7 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
         }
 
     }
+
     public void imprimirMovimentacoesUsuario() {
         if (!listaMovimentacaos.isEmpty()) {
             Map<String, Object> m = new HashMap<>();
@@ -268,7 +311,32 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
         return listaDeUsuarios;
     }
 
-   
+    public List<JuizoTribunal> getListaDeJuizoTribunais() {
+        return listaDeJuizoTribunais;
+    }
 
-    
+    public List<Processo> getListaDeProcessos() {
+        return listaDeProcessos;
+    }
+
+    public List<JuizoTribunal> getListaDeJuizoTribunaisSelection() {
+        return listaDeJuizoTribunaisSelection;
+    }
+
+    public void setListaDeJuizoTribunaisSelection(List<JuizoTribunal> listaDeJuizoTribunaisSelection) {
+        this.listaDeJuizoTribunaisSelection = listaDeJuizoTribunaisSelection;
+    }
+
+    public List<Enderecamento> getListaDeEnderecamentos() {
+        return listaDeEnderecamentos;
+    }
+
+    public List<Enderecamento> getListaDeEnderecamentosSelection() {
+        return listaDeEnderecamentosSelection;
+    }
+
+    public void setListaDeEnderecamentosSelection(List<Enderecamento> listaDeEnderecamentosSelection) {
+        this.listaDeEnderecamentosSelection = listaDeEnderecamentosSelection;
+    }
+
 }

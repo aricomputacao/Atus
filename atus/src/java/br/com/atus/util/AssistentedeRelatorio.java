@@ -134,7 +134,6 @@ public class AssistentedeRelatorio implements Serializable {
             FacesContext.getCurrentInstance().responseComplete();
             System.out.println("Completou");
         } catch (JRException | IOException e) {
-            e.printStackTrace();
         }
     }
 

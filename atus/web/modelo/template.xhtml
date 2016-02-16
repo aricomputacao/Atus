@@ -55,84 +55,88 @@
         </p:dialog>
         <p:dialog showEffect="fade"  header="#{label.usuariosAtivos}" width="15%"  minimizable="true"  position="right"  closeOnEscape="true"  
                   id="usruarios" hideEffect="fade" widgetVar="usrAti" >
-<!--            <h:form id="frm_prin" >
-                <p:poll interval="1"   update="tbl"  immediate="true" listener="{chatSessioMB.atualizarListaDeUsuariosLogados()}" />
-                <p:dataTable    value="{chatSessioMB.listaDeUsuariosLogados}"  var="usr"  id="tbl" paginatorAlwaysVisible="false"  scrollHeight="300" 
-                                scrollRows="10" scrollable="true" rowStyleClass="{(empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row')}"
-                                rowIndexVar="rowIx" emptyMessage="{mensagens['consulta.vazia']}">
-                    <p:column >
-                            <p:graphicImage library="imagens" name="ic_chat.png"/>
-                            <p:commandLink value="{usr} "  actionListener="{chatSessioMB.adicionarChat(usr)}"  style="margin-left: 5px" />
-                            <h:outputText value="({chatSessioMB.mensagensParaUsuarioLogado(usr)})" />
-                    </p:column>
-                </p:dataTable>
-            </h:form>-->
+            <!--            <h:form id="frm_prin" >
+                            <p:poll interval="1"   update="tbl"  immediate="true" listener="{chatSessioMB.atualizarListaDeUsuariosLogados()}" />
+                            <p:dataTable    value="{chatSessioMB.listaDeUsuariosLogados}"  var="usr"  id="tbl" paginatorAlwaysVisible="false"  scrollHeight="300" 
+                                            scrollRows="10" scrollable="true" rowStyleClass="{(empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row')}"
+                                            rowIndexVar="rowIx" emptyMessage="{mensagens['consulta.vazia']}">
+                                <p:column >
+                                        <p:graphicImage library="imagens" name="ic_chat.png"/>
+                                        <p:commandLink value="{usr} "  actionListener="{chatSessioMB.adicionarChat(usr)}"  style="margin-left: 5px" />
+                                        <h:outputText value="({chatSessioMB.mensagensParaUsuarioLogado(usr)})" />
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>-->
         </p:dialog>
 
         <p:dialog widgetVar="chat" id="chat"   dynamic="true"   closable="false" modal="true">
-<!--            <f:facet name="header" id="tl">
-                <h:panelGrid columns="2">
-                    <p:graphicImage name="grupo.png" width="32" height="32" library="imagens" style="margin-right:  5px" />
-                    <p:outputLabel  value="{chatSessioMB.destino}"/>
-                </h:panelGrid>
-            </f:facet>
-            <h:form prependId="false" id="frm_chat" >
-                <h:panelGrid  columns="1"  width="100%">
-                    <p:poll interval="1"   update="grdMen " partialSubmit="chat" listener="{chatSessioMB.lerMensagem()}" />
-                    <p:dataScroller  id="grdMen" var="message" style="width: 100%" chunkSize="30" mode="inline" scrollHeight="300" value="{chatSessioMB.lerMsg}">
-                        <h:panelGroup layout="blok">
-                            <h:outputText value="{message.data}" >
-                                <f:convertDateTime pattern="MM/dd/yyyy hh:mm"/>
-                            </h:outputText>
-                            <strong><h:outputText value="{message.autor}" /> </strong>:
-                            <h:outputText value="{message.conteudo}" />
-                        </h:panelGroup>
-                    </p:dataScroller>
-                </h:panelGrid>
-                <h:panelGrid >
-                    <p:inputTextarea id="men1" cols="75"  rows="3" value="{chatSessioMB.msg}"   />
-                    <h:panelGrid columns="2" width="100%">
-                         <p:commandButton value="{label.enviar}" icon="fa fa-paper-plane-o fa-lg"  onclick="setFocus('men1')"  
-                                          actionListener="{chatSessioMB.addMsg()}" update="frm_chat"  />
-                        <p:commandButton value="{label.fechar}" style="float: right" icon="fa fa-times fa-lg" type="button"   onclick="PF('chat').hide()"  />
-                    
-                   
-                    </h:panelGrid>
-                </h:panelGrid>
-            </h:form>-->
+            <!--            <f:facet name="header" id="tl">
+                            <h:panelGrid columns="2">
+                                <p:graphicImage name="grupo.png" width="32" height="32" library="imagens" style="margin-right:  5px" />
+                                <p:outputLabel  value="{chatSessioMB.destino}"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <h:form prependId="false" id="frm_chat" >
+                            <h:panelGrid  columns="1"  width="100%">
+                                <p:poll interval="1"   update="grdMen " partialSubmit="chat" listener="{chatSessioMB.lerMensagem()}" />
+                                <p:dataScroller  id="grdMen" var="message" style="width: 100%" chunkSize="30" mode="inline" scrollHeight="300" value="{chatSessioMB.lerMsg}">
+                                    <h:panelGroup layout="blok">
+                                        <h:outputText value="{message.data}" >
+                                            <f:convertDateTime pattern="MM/dd/yyyy hh:mm"/>
+                                        </h:outputText>
+                                        <strong><h:outputText value="{message.autor}" /> </strong>:
+                                        <h:outputText value="{message.conteudo}" />
+                                    </h:panelGroup>
+                                </p:dataScroller>
+                            </h:panelGrid>
+                            <h:panelGrid >
+                                <p:inputTextarea id="men1" cols="75"  rows="3" value="{chatSessioMB.msg}"   />
+                                <h:panelGrid columns="2" width="100%">
+                                     <p:commandButton value="{label.enviar}" icon="fa fa-paper-plane-o fa-lg"  onclick="setFocus('men1')"  
+                                                      actionListener="{chatSessioMB.addMsg()}" update="frm_chat"  />
+                                    <p:commandButton value="{label.fechar}" style="float: right" icon="fa fa-times fa-lg" type="button"   onclick="PF('chat').hide()"  />
+                                
+                               
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </h:form>-->
         </p:dialog>
 
         <p:dialog id="chat_2"  widgetVar="chat_2" dynamic="true" closable="false" modal="true">
-<!--            <f:facet name="header" id="bl">
-                <h:panelGrid columns="2">
-                    <p:graphicImage name="grupo.png" width="32" height="32" library="imagens" style="margin-right:  5px" />
-                    <p:outputLabel  value="{chatSessioMB.origemExterno}"/>
-                </h:panelGrid>
-            </f:facet>
-            <h:form prependId="false" id="frm_chat2" >
-                <h:panelGrid  columns="1" width="100%"  style="position: relative;float: top">
-                    <p:poll interval="1"   update="grdMen2"  listener="{chatSessioMB.lerMensagemDoExterno()}" />
-
-                    <p:dataScroller chunkSize="15" mode="inline" scrollHeight="300" id="grdMen2" var="message"  value="{chatSessioMB.lerMsg}">
-                        <h:panelGroup layout="blok">
-                            <h:outputText value="{message.data}" >
-                                <f:convertDateTime pattern="MM/dd/yyyy hh:mm"/>
-                            </h:outputText>
-                            <strong><h:outputText value="{message.autor}" /> </strong>:
-                            <h:outputText value="{message.conteudo}" />
-                        </h:panelGroup>
-                    </p:dataScroller>
-                </h:panelGrid>
-                <h:panelGrid >
-                    <p:inputTextarea id="men2" cols="75" rows="3" value="{chatSessioMB.msg}"  maxlength="1024"  />
-                    <h:panelGrid columns="2" width="100%"  >
-                        <p:commandButton value="{label.enviar}" icon="fa fa-paper-plane-o fa-lg"   onclick="setFocus('men2')"  actionListener="{chatSessioMB.addMsgResposta()}" update="frm_chat2"  />
-                        <p:commandButton value="{label.fechar}" style="float: right" icon="fa fa-times fa-lg" type="button"   onclick="PF('chat_2').hide()"  />
-                    </h:panelGrid>
-                </h:panelGrid>
-            </h:form>-->
+            <!--            <f:facet name="header" id="bl">
+                            <h:panelGrid columns="2">
+                                <p:graphicImage name="grupo.png" width="32" height="32" library="imagens" style="margin-right:  5px" />
+                                <p:outputLabel  value="{chatSessioMB.origemExterno}"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <h:form prependId="false" id="frm_chat2" >
+                            <h:panelGrid  columns="1" width="100%"  style="position: relative;float: top">
+                                <p:poll interval="1"   update="grdMen2"  listener="{chatSessioMB.lerMensagemDoExterno()}" />
+            
+                                <p:dataScroller chunkSize="15" mode="inline" scrollHeight="300" id="grdMen2" var="message"  value="{chatSessioMB.lerMsg}">
+                                    <h:panelGroup layout="blok">
+                                        <h:outputText value="{message.data}" >
+                                            <f:convertDateTime pattern="MM/dd/yyyy hh:mm"/>
+                                        </h:outputText>
+                                        <strong><h:outputText value="{message.autor}" /> </strong>:
+                                        <h:outputText value="{message.conteudo}" />
+                                    </h:panelGroup>
+                                </p:dataScroller>
+                            </h:panelGrid>
+                            <h:panelGrid >
+                                <p:inputTextarea id="men2" cols="75" rows="3" value="{chatSessioMB.msg}"  maxlength="1024"  />
+                                <h:panelGrid columns="2" width="100%"  >
+                                    <p:commandButton value="{label.enviar}" icon="fa fa-paper-plane-o fa-lg"   onclick="setFocus('men2')"  actionListener="{chatSessioMB.addMsgResposta()}" update="frm_chat2"  />
+                                    <p:commandButton value="{label.fechar}" style="float: right" icon="fa fa-times fa-lg" type="button"   onclick="PF('chat_2').hide()"  />
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </h:form>-->
         </p:dialog>
 
+
+            <p:dialog modal="true" widgetVar="statusDialog" header="Carregando..." draggable="false" closable="false" resizable="false">
+                <p:graphicImage library="imagens" name="carregar.gif" />
+            </p:dialog>
         <ui:insert name="dialogs">
         </ui:insert>
         <ui:insert name="confirme">

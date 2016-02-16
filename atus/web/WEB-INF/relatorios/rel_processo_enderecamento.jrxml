@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_processo_enderecamento" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4de8c45c-a864-44c5-8ef3-536d8c8483c4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="zebra">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean( $V{REPORT_COUNT}.intValue() % 2 == 0 )]]></conditionExpression>
+			<style forecolor="#F0F0F0" backcolor="#F0F0F0"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="img" class="java.lang.String"/>
+	<parameter name="relatorio" class="java.lang.String"/>
+	<parameter name="imgAt" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/ari/Documentos/Projetos/Atus/atus/web/WEB-INF/relatorios/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="juizoTribunal" class="br.com.atus.cadastro.modelo.JuizoTribunal">
+		<fieldDescription><![CDATA[juizoTribunal]]></fieldDescription>
+	</field>
+	<field name="materia" class="br.com.atus.cadastro.modelo.Materia">
+		<fieldDescription><![CDATA[materia]]></fieldDescription>
+	</field>
+	<field name="motivoFase" class="java.lang.String">
+		<fieldDescription><![CDATA[motivoFase]]></fieldDescription>
+	</field>
+	<field name="motivoIndeferimento" class="java.lang.String">
+		<fieldDescription><![CDATA[motivoIndeferimento]]></fieldDescription>
+	</field>
+	<field name="nbDeferido" class="java.lang.String">
+		<fieldDescription><![CDATA[nbDeferido]]></fieldDescription>
+	</field>
+	<field name="nbIndeferido" class="java.lang.String">
+		<fieldDescription><![CDATA[nbIndeferido]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.String">
+		<fieldDescription><![CDATA[numero]]></fieldDescription>
+	</field>
+	<field name="objetoProcesso" class="java.lang.String">
+		<fieldDescription><![CDATA[objetoProcesso]]></fieldDescription>
+	</field>
+	<field name="observacoes" class="java.lang.String">
+		<fieldDescription><![CDATA[observacoes]]></fieldDescription>
+	</field>
+	<field name="parteInteressadas" class="java.util.List">
+		<fieldDescription><![CDATA[parteInteressadas]]></fieldDescription>
+	</field>
+	<field name="provas" class="java.lang.String">
+		<fieldDescription><![CDATA[provas]]></fieldDescription>
+	</field>
+	<field name="tipoContrato" class="br.com.atus.cadastro.modelo.TipoContrato">
+		<fieldDescription><![CDATA[tipoContrato]]></fieldDescription>
+	</field>
+	<field name="todosAdversarios" class="java.lang.String">
+		<fieldDescription><![CDATA[todosAdversarios]]></fieldDescription>
+	</field>
+	<field name="usuarioCadastro" class="br.com.atus.cadastro.modelo.Usuario">
+		<fieldDescription><![CDATA[usuarioCadastro]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="fase" class="br.com.atus.processo.modelo.Fase">
+		<fieldDescription><![CDATA[fase]]></fieldDescription>
+	</field>
+	<field name="colaborador" class="br.com.atus.cadastro.modelo.Colaborador">
+		<fieldDescription><![CDATA[colaborador]]></fieldDescription>
+	</field>
+	<field name="cliente" class="br.com.atus.cadastro.modelo.Cliente">
+		<fieldDescription><![CDATA[cliente]]></fieldDescription>
+	</field>
+	<field name="enderecamento" class="br.com.atus.processo.modelo.Enderecamento">
+		<fieldDescription><![CDATA[enderecamento]]></fieldDescription>
+	</field>
+	<variable name="id_2" class="java.lang.Integer" resetType="Group" resetGroup="enderecamento" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<group name="enderecamento">
+		<groupExpression><![CDATA[$F{enderecamento}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<frame>
+					<reportElement uuid="a812174d-4d83-4c9d-acc1-3f028aa90a70" mode="Opaque" x="0" y="0" width="752" height="20" backcolor="#CAC8C8"/>
+					<staticText>
+						<reportElement uuid="ade1c8aa-995c-4de8-a499-7a2fe139efe2" x="4" y="0" width="117" height="20"/>
+						<textElement verticalAlignment="Middle">
+							<font size="12" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Endereçamento:]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="0e9a4b13-6c87-46f4-aa93-605a538c8d96" x="121" y="0" width="323" height="20"/>
+						<textElement verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{enderecamento}.getNome()]]></textFieldExpression>
+					</textField>
+					<textField evaluationTime="Group" evaluationGroup="enderecamento">
+						<reportElement uuid="be0307b8-79dc-495b-86cb-cfe2649f6255" x="652" y="0" width="100" height="20"/>
+						<textElement verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$V{id_2}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="a7116e90-673d-4836-805c-728c0c85b4fd" x="552" y="0" width="100" height="20"/>
+						<textElement verticalAlignment="Middle">
+							<font size="12" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Quantidade:]]></text>
+					</staticText>
+				</frame>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="65" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="2e9dc139-36a0-4ca3-8935-24ef3f12faab" x="0" y="0" width="752" height="65"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imgAt">
+					<subreportParameterExpression><![CDATA[$P{imgAt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="img">
+					<subreportParameterExpression><![CDATA[$P{img}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="relatorio">
+					<subreportParameterExpression><![CDATA[$P{relatorio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "cabecalho_paisagem.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<frame>
+				<reportElement uuid="1acb82df-af24-49a4-add5-996665c5607f" x="0" y="0" width="753" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement uuid="a6da6aca-2319-4e65-bf4d-9add53b290fd" x="4" y="0" width="65" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8895aee1-aaed-4741-b8f9-2902109676b5" x="73" y="0" width="116" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fase Atual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b5fd6f2-5e4f-42bd-afda-70e35899e670" x="209" y="0" width="176" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="948a695c-7b01-429b-a939-5610629e319c" x="392" y="0" width="189" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Colaborador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="457c8178-5fb2-4b8c-afd3-df851c5b96b5" x="591" y="0" width="162" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Materia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="4d877a5e-6e2a-4ffa-b9cf-f355cadc4207" style="zebra" x="0" y="0" width="752" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="291beff8-9023-4c78-842d-903c6ae087d3" x="4" y="0" width="59" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="920424bc-4837-4e15-b8f7-4aa1cb444116" x="73" y="0" width="116" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fase}.getNome()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7ee2f20b-e6d5-45cb-8b08-8f8384aaefd3" x="209" y="0" width="176" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cliente}.getPessoa().getNome()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3712a086-fcb4-40a4-95ba-f11320b799e1" x="392" y="0" width="189" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{colaborador}.getPessoa().getNome()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3ffdedff-8dce-42a5-bf16-2d3524bf1f3f" x="591" y="0" width="162" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{materia}.getNome()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
