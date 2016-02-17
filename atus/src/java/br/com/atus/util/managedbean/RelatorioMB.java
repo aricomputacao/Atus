@@ -152,20 +152,25 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
     }
 
     public void imprimirProcessoJuizo() {
-        if (!listaDeProcessos.isEmpty()) {
+        listaProcessoUltimaMovimentacaoDTOs.clear();
+        listaProcessoUltimaMovimentacaoDTOs = processoController.ultimasMovimentacoesDe(listaDeProcessos);
+        if (!listaProcessoUltimaMovimentacaoDTOs.isEmpty()) {
             Map<String, Object> m = new HashMap<>();
-            byte[] rel = new AssistentedeRelatorio().relatorioemByte(listaDeProcessos, m, "WEB-INF/relatorios/rel_processo_juizo.jasper", "Relatório de Processos por Juizo");
+            byte[] rel = new AssistentedeRelatorio().relatorioemByte(listaProcessoUltimaMovimentacaoDTOs, m, "WEB-INF/relatorios/rel_processo_juizo.jasper", "Relatório de Processos por Juizo");
             RelatorioSession.setBytesRelatorioInSession(rel);
         }
 
     }
 
     public void imprimirProcessoEnderecamento() {
-        if (!listaDeProcessos.isEmpty()) {
+        listaProcessoUltimaMovimentacaoDTOs.clear();
+        listaProcessoUltimaMovimentacaoDTOs = processoController.ultimasMovimentacoesDe(listaDeProcessos);
+        if (!listaProcessoUltimaMovimentacaoDTOs.isEmpty()) {
             Map<String, Object> m = new HashMap<>();
-            byte[] rel = new AssistentedeRelatorio().relatorioemByte(listaDeProcessos, m, "WEB-INF/relatorios/rel_processo_enderecamento.jasper", "Relatório de Processos por Endereçamento");
+            byte[] rel = new AssistentedeRelatorio().relatorioemByte(listaProcessoUltimaMovimentacaoDTOs, m, "WEB-INF/relatorios/rel_processo_enderecamento.jasper", "Relatório de Processos por Juizo");
             RelatorioSession.setBytesRelatorioInSession(rel);
         }
+      
 
     }
 
