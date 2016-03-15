@@ -262,12 +262,19 @@ public class ProcessoDAO extends DAO<Processo, Long> implements Serializable {
     }
 
     public List<Processo> consultarProcessoPorEnderecamentos(List<Enderecamento> listaDeEnderecamentos) {
-       TypedQuery<Processo> q;
+        TypedQuery<Processo> q;
         q = getEm().createQuery("SELECT p FROM Processo p WHERE p.enderecamento IN  (:end)  ORDER BY p.enderecamento,p.juizoTribunal,p.advogado", Processo.class)
                 .setParameter("end", listaDeEnderecamentos);
 
         return (List<Processo>) (q.getResultList().isEmpty() ? new ArrayList<>() : q.getResultList());
     }
+
+    public List<Processo> consultarProcessoPor(List<JuizoTribunal> listaDeJuizoTribunaisSelection, List<Enderecamento> listaDeEnderecamentos) {
+        TypedQuery<Processo> q;
+        q = getEm().createQuery("SELECT p FROM Processo p WHERE p.juizoTribunal IN  (:juiz) and p.enderecamento in (:end)  ORDER BY p.juizoTribunal,p.enderecamento,p.advogado", Processo.class)
+                .setParameter("end", listaDeEnderecamentos)
+                .setParameter("juiz", listaDeJuizoTribunaisSelection);
+
+        return (List<Processo>) (q.getResultList().isEmpty() ? new ArrayList<>() : q.getResultList());
+    }
 }
-
-

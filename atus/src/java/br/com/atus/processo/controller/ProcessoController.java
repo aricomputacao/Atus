@@ -235,4 +235,9 @@ public class ProcessoController extends Controller<Processo, Long> implements Se
         return dao.consultarProcessoPorEnderecamentos(listaDeEnderecamentos);
 
     }
+
+    public List<Processo> consultarProcessoPor(List<JuizoTribunal> listaDeJuizoTribunaisSelection, List<Enderecamento> listaDeEnderecamentos) {
+        return dao.consultarProcessoPor(listaDeJuizoTribunaisSelection, listaDeEnderecamentos);
+
+    }
 }

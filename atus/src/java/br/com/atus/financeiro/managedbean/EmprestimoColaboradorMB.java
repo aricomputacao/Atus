@@ -6,7 +6,6 @@
 package br.com.atus.financeiro.managedbean;
 
 import br.com.atus.cadastro.modelo.Colaborador;
-import br.com.atus.cadastro.modelo.Pessoa;
 import br.com.atus.financeiro.controller.EmprestimoColaboradorController;
 import br.com.atus.financeiro.modelo.EmprestimoColaborador;
 import br.com.atus.util.MenssagemUtil;
@@ -40,6 +39,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
     private Colaborador colaborador;
     private EmprestimoColaborador emprestimoColaborador;
     private List<EmprestimoColaborador> listaEmprestimoColaborador;
+    private List<EmprestimoColaborador> listaEmprestimoColaboradorFechados;
     private Date dataDePagamento;
     private BigDecimal valor;
 
@@ -85,7 +85,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
         try {
             ec = emprestimoColaboradorController.gerenciar(ec.getId());
             emprestimoColaboradorController.excluir(ec);
-            listaEmprestimoColaborador.remove(ec);
+            consultar();
             MenssagemUtil.addMessageInfo(NavegacaoMB.getMsg("excluir", MenssagemUtil.MENSAGENS));
         } catch (Exception ex) {
             MenssagemUtil.addMessageErro(NavegacaoMB.getMsg("excluir.falha", MenssagemUtil.MENSAGENS));
@@ -101,6 +101,7 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
     public void finalizarEmprestimo() {
         try {
             emprestimoColaboradorController.efetuarPagamento(emprestimoColaborador,valor,dataDePagamento);
+            consultar();
             MenssagemUtil.addMessageInfo(NavegacaoMB.getMsg("salvar", MenssagemUtil.MENSAGENS));
 
         } catch (Exception ex) {
@@ -111,7 +112,8 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void consultar() {
         try {
-            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimos(colaborador.getNome());
+            listaEmprestimoColaborador = emprestimoColaboradorController.consultarEmprestimosAbertos(colaborador.getNome());
+            listaEmprestimoColaboradorFechados = emprestimoColaboradorController.consultarEmprestimosFechados(colaborador.getNome());
         } catch (Exception ex) {
             Logger.getLogger(EmprestimoColaboradorMB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,6 +154,10 @@ public class EmprestimoColaboradorMB extends BeanGenerico<EmprestimoColaborador>
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public List<EmprestimoColaborador> getListaEmprestimoColaboradorFechados() {
+        return listaEmprestimoColaboradorFechados;
     }
 
     

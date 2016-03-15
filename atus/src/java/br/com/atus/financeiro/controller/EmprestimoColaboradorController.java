@@ -32,8 +32,12 @@ public class EmprestimoColaboradorController extends Controller<EmprestimoColabo
         setDAO(dao);
     }
 
-    public List<EmprestimoColaborador> consultarEmprestimos(String valor) throws Exception {
-        return consultarTodos("dataEmprestimo", "colaborador.pessoa.nome", valor);
+    public List<EmprestimoColaborador> consultarEmprestimosAbertos(String nome) throws Exception {
+        return dao.consultarAbertos(nome);
+    }
+
+    public List<EmprestimoColaborador> consultarEmprestimosFechados(String nome) throws Exception {
+        return dao.consultarFechados(nome);
     }
 
     public void efetuarPagamento(EmprestimoColaborador ec, BigDecimal valor, Date dataDePagamento) throws Exception {

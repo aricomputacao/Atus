@@ -19,14 +19,20 @@
 
             <comp:panel_cadastro id="cadFrm" cabecalho_grid="Processos Atrasados" id_form="frm_pag"  >               
                 <p:fieldset>
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="3" cellspacing="10">
                         <p:selectCheckboxMenu label="Juizo Tribunal" required="true" value="#{relatorioMB.listaDeJuizoTribunaisSelection}" filter="true" 
                                               filterMatchMode="startsWith" panelStyle="width:350px" converter="#{indexConverter}">
                             <f:selectItems value="#{relatorioMB.listaDeJuizoTribunais}" var="f" itemLabel="#{f.nome}" itemValue="#{f}" />
                         </p:selectCheckboxMenu>
+
+
+                        <p:selectCheckboxMenu label="Endereçamentos" required="true" value="#{relatorioMB.listaDeEnderecamentosSelection}" filter="true" 
+                                              filterMatchMode="startsWith" panelStyle="width:350px" converter="#{indexConverter}">
+                            <f:selectItems value="#{relatorioMB.listaDeEnderecamentos}" var="f" itemLabel="#{f.nome}" itemValue="#{f}" />
+                        </p:selectCheckboxMenu>
+
+
                         <p:commandButton icon="fa fa-search fa-lg" id="btn" onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" value="Pesquisar" title="Pesquisar" update="@form" actionListener="#{relatorioMB.consultarProcessoPorJuizo()}" />
-
-
                     </h:panelGrid>
                 </p:fieldset>
                 <h:panelGrid >

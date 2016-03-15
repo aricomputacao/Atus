@@ -109,7 +109,7 @@ public class RelatorioMB extends BeanGenerico<ProcessosAtrasadoRelatorioDTO> imp
     }
 
     public void consultarProcessoPorJuizo() {
-        listaDeProcessos = processoController.consultarProcessoPor(listaDeJuizoTribunaisSelection);
+        listaDeProcessos = processoController.consultarProcessoPor(listaDeJuizoTribunaisSelection,listaDeEnderecamentosSelection);
     }
 
     public void consultarProcessoPorEnderecamento() {
